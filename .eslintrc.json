@@ -1,0 +1,21 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["solid"],
+  "extends": ["eslint:recommended", "plugin:solid/recommended", "prettier"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["eslint:recommended", "plugin:solid/typescript", "prettier"],
+      "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": ["tsconfig.json", "tsconfig.node.json"]
+      }
+    }
+  ],
+  "rules": {}
+}
