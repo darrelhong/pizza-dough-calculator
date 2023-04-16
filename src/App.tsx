@@ -1,10 +1,13 @@
 import type { Component } from 'solid-js';
 
+import { Form } from './Form'
+
 const App: Component = () => {
   return (
     <div class="relative px-6 py-4 h-screen">
+      {/* background bokeh */}
       <div
-        class="absolute inset-x-0 -top-36 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-64"
+        class="absolute inset-x-0 -top-36 -z-10 transform-gpu overflow-hidden blur-2xl sm:-top-64"
         aria-hidden="true"
       >
         <div
@@ -15,9 +18,17 @@ const App: Component = () => {
           }}
         />
       </div>
+
+      {/* main content */}
       <div class="mx-auto max-w-2xl">
-        <h1 class="text-2xl font-bold text-gray-800 text-center">Pizza dough calculator</h1>
+        <h1 class="text-2xl mb-2 font-bold text-gray-800 text-center">Pizza dough calculator</h1>
+
+        {/* input section */}
+        <Form />
+
       </div>
+
+      {/* background bokeh */}
       <div
         class="absolute inset-x-0 -bottom-10 -z-10 transform-gpu overflow-hidden blur-2xl"
         aria-hidden="true"
