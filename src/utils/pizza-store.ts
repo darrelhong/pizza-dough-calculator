@@ -1,4 +1,5 @@
 import { createStore } from 'solid-js/store';
+import { calculateIngredients } from './calculate-ingredients';
 
 const DEFAULT_VALUES = {
   pizza_num: 4,
@@ -15,5 +16,13 @@ export const [state, setState] = createStore({
     weight: query.get('weight') ?? DEFAULT_VALUES['weight'],
     hydration: query.get('hydration') ?? DEFAULT_VALUES['hydration'],
     salt: query.get('salt') ?? DEFAULT_VALUES['salt']
-  } as Record<string, string>
+  } as Record<string, string>,
+  get ingredients() {
+    return calculateIngredients(
+      Number(state.fields.pizza_num),
+      Number(state.fields.weight),
+      Number(state.fields.hydration),
+      Number(state.fields.salt)
+    );
+  }
 });
