@@ -1,32 +1,19 @@
 import { type JSX } from 'solid-js';
-import { createStore } from 'solid-js/store';
 import { Input } from './components';
-
-const DEFAULT_VALUES = {
-  pizza_num: 4,
-  weight: 150,
-  hydration: 65,
-  salt: 2.5
-};
+import { state, setState } from './utils/pizza-store';
 
 export const Form = (): JSX.Element => {
   const query = new URLSearchParams(window.location.search);
 
-  const [fields, setFields] = createStore({
-    pizza_num: query.get('pizza_num') ?? DEFAULT_VALUES['pizza_num'],
-    weight: query.get('weight') ?? DEFAULT_VALUES['weight'],
-    hydration: query.get('hydration') ?? DEFAULT_VALUES['hydration'],
-    salt: query.get('salt') ?? DEFAULT_VALUES['salt']
-  } as Record<string, string>);
-
   const onInput = (e: Event) => {
     const target = e.target as HTMLInputElement;
-    setFields(target.name, target.value);
-
+    setState('fields', target.name, target.value);
     // set query params to match input values for url persistence/sharing
     query.set(target.name, target.value);
     window.history.replaceState({}, '', `?${query}`);
   };
+
+  const fields = state.fields;
 
   return (
     <>
