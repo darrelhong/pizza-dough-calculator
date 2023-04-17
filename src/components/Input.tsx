@@ -4,12 +4,13 @@ interface InputProps {
   name: string;
   label: string;
   errorMessage?: string;
+  class?: string;
 }
 
 export const Input = (_props: InputProps & JSX.InputHTMLAttributes<HTMLInputElement>): JSX.Element => {
-  const [props, rest] = splitProps(_props, ['name', 'label', 'errorMessage']);
+  const [props, rest] = splitProps(_props, ['name', 'label', 'errorMessage', 'class']);
   return (
-    <div>
+    <div class={props.class}>
       <label for={props.name} class="block text-sm font-medium text-gray-900">
         {props.label}
       </label>

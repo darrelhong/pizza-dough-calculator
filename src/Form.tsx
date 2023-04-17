@@ -16,8 +16,9 @@ export const Form = (): JSX.Element => {
   const fields = state.fields;
 
   return (
-    <>
+    <div class="mx-auto max-w-xs grid grid-cols-1 sm:gap-x-4 sm:grid-cols-2 sm:mb-4 sm:max-w-none">
       <Input
+        class="col-span-1"
         name="pizza_num"
         label="Number of pizzas"
         type="number"
@@ -28,6 +29,7 @@ export const Form = (): JSX.Element => {
       />
 
       <Input
+        class="col-span-1"
         name="weight"
         label="Weight per pizza (g)"
         type="number"
@@ -38,6 +40,7 @@ export const Form = (): JSX.Element => {
       />
 
       <Input
+        class="col-span-1"
         name="hydration"
         label="Hydration (%)"
         type="number"
@@ -49,6 +52,7 @@ export const Form = (): JSX.Element => {
       />
 
       <Input
+        class="col-span-1"
         name="salt"
         label="Salt (%)"
         type="number"
@@ -58,6 +62,6 @@ export const Form = (): JSX.Element => {
         value={fields.salt}
         onInput={onInput}
       />
-    </>
+    </div>
   );
 };
