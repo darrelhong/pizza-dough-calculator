@@ -1,4 +1,5 @@
 import { type JSX } from 'solid-js';
+import { createStore } from 'solid-js/store';
 import { Input } from './components';
 
 const DEFAULT_VALUES = {
@@ -11,8 +12,16 @@ const DEFAULT_VALUES = {
 export const Form = (): JSX.Element => {
   const query = new URLSearchParams(window.location.search);
 
+  const [fields, setFields] = createStore({
+    pizza_num: query.get('pizza_num') ?? DEFAULT_VALUES['pizza_num'],
+    weight: query.get('weight') ?? DEFAULT_VALUES['weight'],
+    hydration: query.get('hydration') ?? DEFAULT_VALUES['hydration'],
+    salt: query.get('salt') ?? DEFAULT_VALUES['salt']
+  } as Record<string, string>);
+
   const onInput = (e: Event) => {
     const target = e.target as HTMLInputElement;
+    setFields(target.name, target.value);
 
     // set query params to match input values for url persistence/sharing
     query.set(target.name, target.value);
@@ -27,7 +36,7 @@ export const Form = (): JSX.Element => {
         type="number"
         required={true}
         min={1}
-        value={query.get('pizza_num') ?? DEFAULT_VALUES['pizza_num']}
+        value={fields.pizza_num}
         onInput={onInput}
       />
 
@@ -37,7 +46,7 @@ export const Form = (): JSX.Element => {
         type="number"
         required={true}
         min={1}
-        value={query.get('weight') ?? DEFAULT_VALUES['weight']}
+        value={fields.weight}
         onInput={onInput}
       />
 
@@ -48,7 +57,7 @@ export const Form = (): JSX.Element => {
         required={true}
         min={1}
         max={99}
-        value={query.get('hydration') ?? DEFAULT_VALUES['hydration']}
+        value={fields.hydration}
         onInput={onInput}
       />
 
@@ -59,7 +68,7 @@ export const Form = (): JSX.Element => {
         required={true}
         min={0}
         step="any"
-        value={query.get('salt') ?? DEFAULT_VALUES['salt']}
+        value={fields.salt}
         onInput={onInput}
       />
     </>
