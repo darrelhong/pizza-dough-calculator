@@ -14,6 +14,7 @@ export const calculateIngredients = (
   return {
     flourWeight,
     waterWeight,
-    saltWeight
+    saltWeight,
+    totalWeight
   };
 };
