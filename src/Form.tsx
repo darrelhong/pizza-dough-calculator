@@ -25,6 +25,7 @@ export const Form = (): JSX.Element => {
         name="pizza_num"
         label="Number of pizzas"
         type="number"
+        required={true}
         min={1}
         value={query.get('pizza_num') ?? DEFAULT_VALUES['pizza_num']}
         onInput={onInput}
@@ -34,6 +35,7 @@ export const Form = (): JSX.Element => {
         name="weight"
         label="Weight per pizza (g)"
         type="number"
+        required={true}
         min={1}
         value={query.get('weight') ?? DEFAULT_VALUES['weight']}
         onInput={onInput}
@@ -43,6 +45,7 @@ export const Form = (): JSX.Element => {
         name="hydration"
         label="Hydration (%)"
         type="number"
+        required={true}
         min={1}
         max={99}
         value={query.get('hydration') ?? DEFAULT_VALUES['hydration']}
@@ -53,6 +56,7 @@ export const Form = (): JSX.Element => {
         name="salt"
         label="Salt (%)"
         type="number"
+        required={true}
         min={0}
         step="any"
         value={query.get('salt') ?? DEFAULT_VALUES['salt']}
