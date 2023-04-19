@@ -21,7 +21,7 @@ export const Input = (_props: InputProps & JSX.InputHTMLAttributes<HTMLInputElem
           {...rest}
         />
       </div>
-      <p class="text-xs text-red-500 min-h-4">&ZeroWidthSpace;{props.errorMessage}</p>
+      {/* <p class="text-xs text-red-500 min-h-4">&ZeroWidthSpace;{props.errorMessage}</p> */}
     </div>
   );
 };
