@@ -11,5 +11,6 @@ export default {
       }
     }
   },
-  plugins: [tailwindcssformsplugin]
+  plugins: [tailwindcssformsplugin],
+  darkMode: 'class'
 } satisfies Config;

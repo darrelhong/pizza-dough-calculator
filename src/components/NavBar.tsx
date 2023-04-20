@@ -1,8 +1,10 @@
+import { toggleTheme } from '../utils/dark-mode';
+
 export const NavBar = () => (
   <div class="sticky top-0 py-3 px-4 w-full border-b border-slate-900/10 backdrop-blur bg-white/60 z-40">
     <div class="max-w-xl mx-auto flex justify-between">
       <p>🍕</p>
-      <button>
+      <button onClick={toggleTheme}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
