@@ -16,7 +16,7 @@ export const Form = (): JSX.Element => {
   const fields = state.fields;
 
   return (
-    <div class="mx-auto max-w-xs grid grid-cols-1 mb-4 gap-y-1 sm:gap-x-4 sm:grid-cols-2 sm:max-w-none">
+    <div class="mx-auto max-w-xs grid grid-cols-1 mb-4 gap-y-1 w-full sm:gap-x-4 sm:grid-cols-2 sm:max-w-none sm:w-auto">
       <Input
         class="col-span-1"
         name="pizza_num"

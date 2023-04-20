@@ -5,7 +5,7 @@ import { Recipe } from './Recipe';
 
 const App: Component = () => {
   return (
-    <div class="relative px-4 pt-4 pb-14 min-h-screen sm:px-16">
+    <div class="relative px-4 pt-4 pb-8 min-h-screen sm:px-16">
       {/* background bokeh */}
       <div
         class="absolute inset-x-0 -top-64 right- -z-10 transform-gpu overflow-hidden blur-2xl sm:-top-64"
@@ -21,13 +21,30 @@ const App: Component = () => {
       </div>
 
       {/* main content */}
-      <div class="mx-auto max-w-2xl">
+      <div class="mx-auto max-w-2xl flex flex-col items-center">
         <h1 class="text-2xl mb-4 font-bold text-gray-800 text-center sm:mb-8">Pizza dough calculator 🍕</h1>
 
         {/* input section */}
         <Form />
 
         <Recipe />
+
+        <button class="inline-flex items-center mt-4 justify-center p-2 rounded-lg border border-gray-300 shadow-sm bg-white hover:bg-slate-50 ">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width={1.5}
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+            />
+          </svg>
+        </button>
       </div>
 
       {/* background bokeh */}
