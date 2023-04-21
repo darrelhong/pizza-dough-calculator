@@ -1,10 +1,10 @@
 import { toggleTheme } from '../utils/dark-mode';
 
 export const NavBar = () => (
-  <div class="sticky top-0 py-3 px-4 w-full border-b border-slate-900/10 backdrop-blur bg-white/60 z-40">
-    <div class="max-w-xl mx-auto flex justify-between">
+  <div class="sticky top-0 py-3 px-4 w-full border-b border-slate-900/10 dark:border-slate-300/20 backdrop-blur bg-white/60 dark:bg-slate-900/50 z-40">
+    <div class="max-w-xl mx-auto flex justify-between ">
       <p>🍕</p>
-      <button onClick={toggleTheme}>
+      <button onClick={toggleTheme} class="dark:text-white">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
