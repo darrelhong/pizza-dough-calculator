@@ -10,7 +10,7 @@ export const Form = (): JSX.Element => {
     setState('fields', target.name, target.value);
     // set query params/localstorage to match input values for url persistence/sharing
     query.set(target.name, target.value);
-    localStorage.setItem(`${target.name}_field`, JSON.stringify(target.value));
+    localStorage.setItem(`${target.name}_field`, target.value);
     window.history.replaceState({}, '', `?${query}`);
   };
 
