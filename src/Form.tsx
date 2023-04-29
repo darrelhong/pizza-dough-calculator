@@ -8,8 +8,9 @@ export const Form = (): JSX.Element => {
   const onInput = (e: Event) => {
     const target = e.target as HTMLInputElement;
     setState('fields', target.name, target.value);
-    // set query params to match input values for url persistence/sharing
+    // set query params/localstorage to match input values for url persistence/sharing
     query.set(target.name, target.value);
+    localStorage.setItem(`${target.name}_field`, JSON.stringify(target.value));
     window.history.replaceState({}, '', `?${query}`);
   };
 
