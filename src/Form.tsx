@@ -2,6 +2,8 @@ import { type JSX } from 'solid-js';
 import { Input } from './components';
 import { state, setState } from './utils/pizza-store';
 
+window.history.replaceState({}, '', `?${new URLSearchParams(state.fields)}`);
+
 export const Form = (): JSX.Element => {
   const query = new URLSearchParams(window.location.search);
 
