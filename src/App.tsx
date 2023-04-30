@@ -2,7 +2,7 @@ import type { Component } from 'solid-js';
 
 import { Form } from './Form';
 import { Recipe } from './Recipe';
-import { NavBar } from './components/NavBar';
+import { NavBar, Footer } from './components';
 
 const App: Component = () => {
   return (
@@ -49,6 +49,8 @@ const App: Component = () => {
           />
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };
