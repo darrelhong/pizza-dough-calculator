@@ -1,6 +1,10 @@
+import { useNavigate } from '@solidjs/router';
+import { addNote } from './utils/idb';
 import { state } from './utils/pizza-store';
 
 export const Recipe = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div class="block max-w-xs mx-auto bg-white dark:bg-slate-400/10 dark:text-white rounded-lg py-4 px-5 ring-1 ring-slate-900/10 dark:ring-slate-100/30 shadow-lg dark:shadow-slate-50/10">
@@ -63,20 +67,39 @@ export const Recipe = () => {
           </p>
         </div>
       </div>
-      <button
-        class="mt-3 font-medium text-slate-900 bg-none dark:text-white text-sm bg-white dark:bg-white/10 hover:bg-slate-50 dark:hover:bg-white/20 px-2 py-1 rounded ring-1 ring-inset ring-gray-300 dark:ring-0"
-        onClick={() => {
-          navigator.clipboard.writeText(
-            `Flour: ${Math.round(state.ingredients.flourWeight)}g \nWater: ${Math.round(
-              state.ingredients.waterWeight
-            )}g \nSalt: ${Math.round(state.ingredients.saltWeight)}g \nMakes ${Number(
-              state.fields.pizza_num
-            )} dough balls of ${Number(state.fields.weight)}g each`
-          );
-        }}
-      >
-        Copy recipe
-      </button>
+      <div class="inline-flex gap-4">
+        <button
+          class="mt-3 font-medium text-slate-900 bg-none dark:text-white text-sm bg-white dark:bg-white/10 hover:bg-slate-50 dark:hover:bg-white/20 px-2 py-1 rounded ring-1 ring-inset ring-gray-300 dark:ring-0"
+          onClick={async () => {
+            await addNote({
+              flourWeight: Math.round(state.ingredients.flourWeight),
+              waterWeight: Math.round(state.ingredients.waterWeight),
+              saltWeight: Math.round(state.ingredients.saltWeight),
+              hydration: state.fields.hydration,
+              salt: state.fields.salt,
+              totalWeight: Math.round(state.ingredients.totalWeight),
+              date: new Date()
+            });
+            navigate('/notes');
+          }}
+        >
+          Add note
+        </button>
+        <button
+          class="mt-3 font-medium text-slate-900 bg-none dark:text-white text-sm bg-white dark:bg-white/10 hover:bg-slate-50 dark:hover:bg-white/20 px-2 py-1 rounded ring-1 ring-inset ring-gray-300 dark:ring-0"
+          onClick={() => {
+            navigator.clipboard.writeText(
+              `Flour: ${Math.round(state.ingredients.flourWeight)}g \nWater: ${Math.round(
+                state.ingredients.waterWeight
+              )}g \nSalt: ${Math.round(state.ingredients.saltWeight)}g \nMakes ${Number(
+                state.fields.pizza_num
+              )} dough balls of ${Number(state.fields.weight)}g each`
+            );
+          }}
+        >
+          Copy recipe
+        </button>
+      </div>
     </>
   );
 };
