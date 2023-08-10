@@ -1,5 +1,5 @@
 export const Footer = () => (
-  <div class="flex justify-center py-2 text-sm items-center gap-2">
+  <div class="flex items-center justify-center gap-2 py-2 text-sm">
     <a href="https://github.com/darrelhong/pizza-dough-calculator">
       <svg viewBox="0 0 98 96" height="1em" xmlns="http://www.w3.org/2000/svg">
         <path

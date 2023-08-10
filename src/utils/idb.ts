@@ -1,5 +1,5 @@
-import { openDB, DBSchema } from 'idb';
-import { Note } from './types';
+import { openDB, DBSchema } from "idb";
+import { Note } from "./types";
 
 type NotesDb = DBSchema & {
   notes: {
@@ -8,18 +8,18 @@ type NotesDb = DBSchema & {
   };
 };
 
-const notesDb = openDB<NotesDb>('pizza-db', 1, {
+const notesDb = openDB<NotesDb>("pizza-db", 1, {
   upgrade(db) {
-    db.createObjectStore('notes', {
-      autoIncrement: true
+    db.createObjectStore("notes", {
+      autoIncrement: true,
     });
-  }
+  },
 });
 
 export const addNote = async (recipe: Note) => {
-  return (await notesDb).add('notes', { ...recipe });
+  return (await notesDb).add("notes", { ...recipe });
 };
 
 export const getNotes = async () => {
-  return (await notesDb).getAll('notes');
+  return (await notesDb).getAll("notes");
 };

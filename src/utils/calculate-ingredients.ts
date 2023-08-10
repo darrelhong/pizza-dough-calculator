@@ -2,7 +2,7 @@ export const calculateIngredients = (
   pizzaNum: number,
   weightPerPizza: number,
   hydration: number,
-  saltPercentage: number
+  saltPercentage: number,
 ) => {
   const totalPercentage = 100 + hydration + saltPercentage;
   const totalWeight = pizzaNum * weightPerPizza;
@@ -15,6 +15,6 @@ export const calculateIngredients = (
     flourWeight,
     waterWeight,
     saltWeight,
-    totalWeight
+    totalWeight,
   };
 };

@@ -1,20 +1,21 @@
 export const initialiseTheme = () => {
   if (
-    localStorage.getItem('theme') === 'dark' ||
-    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    localStorage.getItem("theme") === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
   ) {
-    document.documentElement.classList.add('dark');
+    document.documentElement.classList.add("dark");
   } else {
-    document.documentElement.classList.remove('dark');
+    document.documentElement.classList.remove("dark");
   }
 };
 
 export const toggleTheme = () => {
-  if (document.documentElement.classList.contains('dark')) {
-    document.documentElement.classList.remove('dark');
-    localStorage.setItem('theme', 'light');
+  if (document.documentElement.classList.contains("dark")) {
+    document.documentElement.classList.remove("dark");
+    localStorage.setItem("theme", "light");
   } else {
-    document.documentElement.classList.add('dark');
-    localStorage.setItem('theme', 'dark');
+    document.documentElement.classList.add("dark");
+    localStorage.setItem("theme", "dark");
   }
 };

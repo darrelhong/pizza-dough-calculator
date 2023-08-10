@@ -1,18 +1,18 @@
-import { A } from '@solidjs/router';
-import { toggleTheme } from '../utils/dark-mode';
+import { A } from "@solidjs/router";
+import { toggleTheme } from "../utils/dark-mode";
 
 export const NavBar = () => (
-  <div class="sticky top-0 py-3 px-4 w-full border-b border-slate-900/10 dark:border-slate-300/20 backdrop-blur bg-white/60 dark:bg-slate-900/50 z-40">
-    <div class="max-w-xl mx-auto flex gap-3">
+  <div class="sticky top-0 z-40 w-full border-b border-slate-900/10 bg-white/60 px-4 py-3 backdrop-blur dark:border-slate-300/20 dark:bg-slate-900/50">
+    <div class="mx-auto flex max-w-xl gap-3">
       <A href="/">🍕</A>
-      <button onClick={toggleTheme} class=" dark:text-white ms-auto">
+      <button onClick={toggleTheme} class=" ms-auto dark:text-white">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           stroke-width={1.5}
           stroke="currentColor"
-          class="w-6 h-6"
+          class="h-6 w-6"
         >
           <path
             stroke-linecap="round"
@@ -28,7 +28,7 @@ export const NavBar = () => (
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="w-6 h-6"
+          class="h-6 w-6"
         >
           <path
             stroke-linecap="round"
