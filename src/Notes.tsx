@@ -2,6 +2,7 @@ import { Component, For, Show, createResource } from "solid-js";
 
 import { Footer, NavBar } from "./components";
 import { getNotes } from "./utils/idb";
+import { Note } from "./components/Note";
 
 const Notes: Component = () => {
   const [notes] = createResource(getNotes);
@@ -38,50 +39,7 @@ const Notes: Component = () => {
         >
           <div class="mx-auto max-w-4xl">
             <ul class="grid gap-4">
-              <For each={notes()}>
-                {(note) => (
-                  <li class="flex flex-col gap-x-4 rounded-lg bg-white px-5 py-4 shadow-lg ring-1 ring-slate-900/10 dark:bg-white/5 dark:text-white dark:shadow-slate-50/10 dark:ring-slate-100/30 sm:flex-row">
-                    <div class="">
-                      <div class="flex justify-between">
-                        <p class="text-lg font-bold text-gray-800 dark:text-white">
-                          {note.hydration}% hydration,{" "}
-                          <span class="text font-normal">
-                            {note.totalWeight}g
-                          </span>
-                        </p>
-                      </div>
-                      <ul class="flex flex-wrap gap-x-4 sm:flex-col">
-                        <li class="text-gray-600 dark:text-gray-400">
-                          {note.flourWeight}g flour
-                        </li>
-                        <li class="text-gray-600 dark:text-gray-400">
-                          {note.waterWeight}g water
-                        </li>
-                        <li class="text-gray-600 dark:text-gray-400">
-                          {note.saltWeight}g salt
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div class="flex-1">
-                      <p class="mb-0.5 text-sm font-medium">Notes:</p>
-                      <textarea class="w-full rounded-lg bg-transparent text-sm">
-                        {note.note}
-                      </textarea>
-                      <div class="flex  items-end ">
-                        <button class="rounded bg-white bg-none px-2 py-1 text-sm font-medium text-slate-900 ring-1 ring-inset ring-gray-300 hover:bg-slate-50 dark:bg-white/10 dark:text-white dark:ring-0 dark:hover:bg-white/20">
-                          Edit
-                        </button>
-                        <p class="ms-auto flex-none text-end text-sm text-gray-600 dark:text-gray-400">
-                          {new Intl.DateTimeFormat("default", {
-                            dateStyle: "medium",
-                          }).format(note.date)}
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                )}
-              </For>
+              <For each={notes()}>{(note) => <Note note={note} />}</For>
             </ul>
           </div>
         </Show>

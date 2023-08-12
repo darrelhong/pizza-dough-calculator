@@ -1,4 +1,5 @@
 export type Note = {
+  id: number;
   hydration: number;
   salt: number;
   totalWeight: number;
