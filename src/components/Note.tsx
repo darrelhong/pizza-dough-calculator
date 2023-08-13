@@ -10,6 +10,7 @@ export const Note: Component<{
   let noteDivRef: HTMLDivElement | undefined;
   let noteTextAreaRef: HTMLTextAreaElement | undefined;
   const [isEdit, setIsEdit] = createSignal(false);
+  const [isDeleting, setIsDeleting] = createSignal(false);
 
   // set isEdit false when press escape
   const onEscape = (e: KeyboardEvent) => {
@@ -85,7 +86,7 @@ export const Note: Component<{
             }}
             class="rounded bg-white bg-none px-2 py-1 text-sm font-medium text-slate-900 ring-1 ring-inset ring-gray-300 hover:bg-slate-50 dark:bg-white/10 dark:text-white dark:ring-0 dark:hover:bg-white/20"
           >
-            {isEdit() ? "Save" : props.note.note ? "Edit" : "Add"}
+            {isEdit() ? "Save" : "Edit note"}
           </button>
           <Show when={isEdit()}>
             <button
@@ -99,11 +100,25 @@ export const Note: Component<{
 
         <div class="flex items-end gap-1">
           <button
-            onClick={() => props.onDeleteNote(props.note.id)}
+            onClick={() => {
+              if (isDeleting()) {
+                props.onDeleteNote(props.note.id);
+              } else {
+                setIsDeleting(true);
+              }
+            }}
             class="rounded bg-white bg-none px-2 py-1 text-sm font-medium text-slate-900 ring-1 ring-inset ring-gray-300 hover:bg-slate-50 dark:bg-white/10 dark:text-white dark:ring-0 dark:hover:bg-white/20"
           >
-            Delete
+            {isDeleting() ? "Confirm" : "Delete"}
           </button>
+          <Show when={isDeleting()}>
+            <button
+              onClick={() => setIsDeleting(false)}
+              class="rounded bg-white bg-none px-2 py-1 text-sm font-medium text-slate-900 ring-1 ring-inset ring-gray-300 hover:bg-slate-50 dark:bg-white/10 dark:text-white dark:ring-0 dark:hover:bg-white/20"
+            >
+              Cancel
+            </button>
+          </Show>
           <p class="ms-auto flex-none text-end text-sm text-gray-600 dark:text-gray-400">
             {new Intl.DateTimeFormat("default", {
               dateStyle: "medium",
