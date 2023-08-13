@@ -1,4 +1,4 @@
-import { Component, createSignal } from "solid-js";
+import { Component, Show, createSignal, onCleanup, onMount } from "solid-js";
 
 import { Note as NoteType } from "../utils/types";
 import { updateNote } from "../utils/idb";
@@ -7,6 +7,20 @@ export const Note: Component<{ note: NoteType }> = (props) => {
   let noteDivRef: HTMLDivElement | undefined;
   let noteTextAreaRef: HTMLTextAreaElement | undefined;
   const [isEdit, setIsEdit] = createSignal(false);
+
+  // set isEdit false when press escape
+  const onEscape = (e: KeyboardEvent) => {
+    if (e.key === "Escape" && isEdit()) {
+      setIsEdit(false);
+    }
+  };
+  onMount(() => {
+    document.addEventListener("keydown", onEscape);
+  });
+  onCleanup(() => {
+    document.removeEventListener("keydown", onEscape);
+  });
+
   return (
     <li class="flex flex-col gap-x-4 rounded-lg bg-white px-5 py-4 shadow-lg ring-1 ring-slate-900/10 dark:bg-white/5 dark:text-white dark:shadow-slate-50/10 dark:ring-slate-100/30 sm:flex-row">
       <div class="">
@@ -49,7 +63,7 @@ export const Note: Component<{ note: NoteType }> = (props) => {
           </div>
         )}
 
-        <div class="flex  items-end ">
+        <div class="flex items-end gap-1">
           <button
             onClick={() => {
               if (isEdit()) {
@@ -71,6 +85,14 @@ export const Note: Component<{ note: NoteType }> = (props) => {
           >
             {isEdit() ? "Save" : props.note.note ? "Edit" : "Add"}
           </button>
+          <Show when={isEdit()}>
+            <button
+              onClick={() => setIsEdit(false)}
+              class="rounded bg-white bg-none px-2 py-1 text-sm font-medium text-slate-900 ring-1 ring-inset ring-gray-300 hover:bg-slate-50 dark:bg-white/10 dark:text-white dark:ring-0 dark:hover:bg-white/20"
+            >
+              Cancel
+            </button>
+          </Show>
           <p class="ms-auto flex-none text-end text-sm text-gray-600 dark:text-gray-400">
             {new Intl.DateTimeFormat("default", {
               dateStyle: "medium",
