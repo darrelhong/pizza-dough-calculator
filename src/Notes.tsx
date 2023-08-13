@@ -1,11 +1,16 @@
 import { Component, For, Show, createResource } from "solid-js";
 
 import { Footer, NavBar } from "./components";
-import { getNotes } from "./utils/idb";
+import { deleteNote, getNotes } from "./utils/idb";
 import { Note } from "./components/Note";
 
 const Notes: Component = () => {
-  const [notes] = createResource(getNotes);
+  const [notes, { refetch }] = createResource(getNotes);
+
+  const onDeleteNote = async (id: number) => {
+    await deleteNote(id);
+    refetch();
+  };
 
   return (
     <div class="navbar relative isolate flex min-h-screen flex-col dark:bg-slate-900">
@@ -39,7 +44,9 @@ const Notes: Component = () => {
         >
           <div class="mx-auto max-w-4xl">
             <ul class="grid gap-4">
-              <For each={notes()}>{(note) => <Note note={note} />}</For>
+              <For each={notes()}>
+                {(note) => <Note note={note} onDeleteNote={onDeleteNote} />}
+              </For>
             </ul>
           </div>
         </Show>

@@ -3,7 +3,10 @@ import { Component, Show, createSignal, onCleanup, onMount } from "solid-js";
 import { Note as NoteType } from "../utils/types";
 import { updateNote } from "../utils/idb";
 
-export const Note: Component<{ note: NoteType }> = (props) => {
+export const Note: Component<{
+  note: NoteType;
+  onDeleteNote: (id: number) => Promise<void>;
+}> = (props) => {
   let noteDivRef: HTMLDivElement | undefined;
   let noteTextAreaRef: HTMLTextAreaElement | undefined;
   const [isEdit, setIsEdit] = createSignal(false);
@@ -62,8 +65,7 @@ export const Note: Component<{ note: NoteType }> = (props) => {
             {props.note.note}
           </div>
         )}
-
-        <div class="flex items-end gap-1">
+        <div class="mb-1 flex gap-1">
           <button
             onClick={() => {
               if (isEdit()) {
@@ -93,6 +95,15 @@ export const Note: Component<{ note: NoteType }> = (props) => {
               Cancel
             </button>
           </Show>
+        </div>
+
+        <div class="flex items-end gap-1">
+          <button
+            onClick={() => props.onDeleteNote(props.note.id)}
+            class="rounded bg-white bg-none px-2 py-1 text-sm font-medium text-slate-900 ring-1 ring-inset ring-gray-300 hover:bg-slate-50 dark:bg-white/10 dark:text-white dark:ring-0 dark:hover:bg-white/20"
+          >
+            Delete
+          </button>
           <p class="ms-auto flex-none text-end text-sm text-gray-600 dark:text-gray-400">
             {new Intl.DateTimeFormat("default", {
               dateStyle: "medium",

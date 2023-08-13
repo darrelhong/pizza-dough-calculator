@@ -30,3 +30,7 @@ export const getNotes = async () => {
 export const updateNote = async (note: Note) => {
   return (await notesDb).put("notes", { ...note });
 };
+
+export const deleteNote = async (id: number) => {
+  return (await notesDb).delete("notes", id);
+};
