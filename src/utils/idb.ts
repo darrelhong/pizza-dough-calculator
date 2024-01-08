@@ -1,10 +1,10 @@
 import { openDB, DBSchema } from "idb";
-import { Note } from "./types";
+import { Note, NoteDto } from "./types";
 
 type NotesDb = DBSchema & {
   notes: {
     key: number;
-    value: Note;
+    value: NoteDto;
   };
 };
 
@@ -17,7 +17,7 @@ const notesDb = openDB<NotesDb>("pizza-db", 1, {
   },
 });
 
-export const addNote = async (recipe: Note) => {
+export const addNote = async (recipe: NoteDto) => {
   return (await notesDb).add("notes", { ...recipe });
 };
 

@@ -99,6 +99,7 @@ export const Recipe = () => {
               hydration: state.fields.hydration,
               salt: state.fields.salt,
               totalWeight: Math.round(state.ingredients.totalWeight),
+              pizzaNum: state.fields.pizza_num,
               date: new Date(),
             });
             navigate("/notes");

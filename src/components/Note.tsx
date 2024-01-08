@@ -27,13 +27,14 @@ export const Note: Component<{
 
   return (
     <li class="flex flex-col gap-x-4 rounded-lg bg-white px-5 py-4 shadow-lg ring-1 ring-slate-900/10 dark:bg-white/5 dark:text-white dark:shadow-slate-50/10 dark:ring-slate-100/30 sm:flex-row">
-      <div class="">
+      <div>
         <div class="flex justify-between">
           <p class="text-lg font-bold text-gray-800 dark:text-white">
             {props.note.hydration}% hydration,{" "}
             <span class="text font-normal">{props.note.totalWeight}g</span>
           </p>
         </div>
+
         <ul class="flex flex-wrap gap-x-4 sm:flex-col">
           <li class="text-gray-600 dark:text-gray-400">
             {props.note.flourWeight}g flour
@@ -45,7 +46,13 @@ export const Note: Component<{
             {props.note.saltWeight}g salt
           </li>
         </ul>
+
+        <p class="text-sm">
+          Makes {props.note.pizzaNum}×
+          {props.note.totalWeight / props.note.pizzaNum}g balls
+        </p>
       </div>
+
       <div class="flex flex-1 flex-col">
         <p class="mb-0.5 text-sm font-medium">Notes:</p>
         {isEdit() ? (
